@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobillaka.com - Kami Beli Mobil Bekas Laka & Bermasalah Anda</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Integrated CSS -->
+    <style>
+        /* --- Design System: Variables --- */
+        :root {
+            --color-primary: #2a9d8f; /* Trustworthy Green */
+            --color-primary-dark: #264653; /* Dark Blue/Green */
+            --color-secondary: #e9c46a; /* Yellowish Accent */
+            --color-accent: #e76f51; /* Orange/Red Accent */
+            --color-accent-dark: #d75f41;
+            --color-background: #f8f9fa;
+            --color-surface: #ffffff;
+            --color-text: #212529;
+            --color-text-light: #495057;
+            --color-footer-bg: #264653;
+            --color-white: #ffffff;
+            --color-grey: #6c757d;
+            --color-light-grey: #e9ecef;
+            --color-border: #dee2e6;
+
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            --container-max-width: 1200px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 16px;
+            --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.07);
+            --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition-speed: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Global Styles & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 3.2rem); }
+        h2 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 1.5rem; }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title p {
+            max-width: 650px;
+            margin: 0.5rem auto 0;
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius-md);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--transition-speed);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Page Hiding System --- */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Module: Navbar --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-text);
+            padding: 0.5rem 0;
+            position: relative;
+            cursor: pointer;
+            font-family: var(--font-heading);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
+            transition: width var(--transition-speed);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--color-primary-dark);
+            z-index: 1100;
+        }
+
+        /* --- Module: Footer --- */
+        .footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-white);
+            padding: 5rem 1.5rem 2rem;
+        }
+
+        .footer a {
+            color: var(--color-secondary);
+        }
+
+        .footer a:hover {
+            color: var(--color-white);
+            text-decoration: underline;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col p, .footer-col ul {
+            list-style: none;
+            color: var(--color-secondary);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            font-size: 1.8rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #34495e;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            padding: 6rem 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            color: var(--color-white);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-content h1 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--color-light-grey);
+            margin-bottom: 2rem;
+        }
+        .hero-benefits {
+            list-style: none;
+            padding: 0;
+        }
+        .hero-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .hero-benefits i {
+            color: var(--color-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* --- Form Container --- */
+        .form-container {
+            background: var(--color-surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+        }
+        .form-container h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color-primary-dark);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-md);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+        }
+        .form-container textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .btn-block {
+            width: 100%;
+        }
+
+        /* How It Works Section */
+        .how-it-works-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step-counter;
+        }
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        .step-card::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--color-secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--color-primary-dark);
+        }
+        .step-icon {
+            font-size: 3.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        .step-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--color-primary-dark);
+        }
+        .process-tabs {
+            display: flex;
+            gap: 1rem;
+            background: var(--color-light-grey);
+            padding: 0.5rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 3rem;
+        }
+        .process-tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-speed);
+            color: var(--color-text-light);
+        }
+        .process-tab-btn.active {
+            background: var(--color-primary);
+            color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(42, 157, 143, 0.3);
+        }
+        .process-tab-content {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s;
+        }
+        .process-tab-content.active {
+            display: block;
+        }
+
+        /* What We Buy Section */
+        #what-we-buy {
+            background-color: var(--color-surface);
+        }
+        .damage-types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .damage-card {
+            position: relative;
+            height: 280px;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+            color: var(--color-white);
+            text-align: center;
+            transition: transform var(--transition-speed);
+        }
+        .damage-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%);
+            z-index: 1;
+            transition: background var(--transition-speed);
+        }
+        .damage-card:hover::before {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 70%);
+        }
+        .damage-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .damage-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        .damage-card:hover img {
+            transform: scale(1.05);
+        }
+        .damage-card h4 {
+            position: relative;
+            z-index: 2;
+            color: var(--color-white);
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        /* Gallery Section (Carousel) */
+        #gallery {
+            position: relative;
+        }
+        .swiper {
+            width: 100%;
+            height: 350px;
+            border-radius: var(--border-radius-lg);
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--color-accent);
+        }
+        .swiper-pagination-bullet-active {
+            background-color: var(--color-accent);
+        }
+
+
+        /* Why Us Section */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .why-us-image img {
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+        }
+        .why-us-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        .why-us-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            flex-shrink: 0;
+            margin-top: 5px;
+            width: 50px;
+            text-align: center;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+        }
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .testimonial-header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .testimonial-author h4 {
+            margin: 0;
+            color: var(--color-text);
+        }
+        .testimonial-author span {
+            color: var(--color-grey);
+            font-size: 0.9rem;
+        }
+        .rating {
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+
+        /* --- Accordion (FAQ) --- */
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            background: var(--color-surface);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 1rem;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: margin var(--transition-speed);
+        }
+        .accordion-item.active {
+            margin-bottom: 1.5rem;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            cursor: pointer;
+        }
+        .accordion-header h4 {
+            margin: 0;
+            color: var(--color-text);
+            font-size: 1.1rem;
+        }
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform var(--transition-speed);
+            color: var(--color-primary);
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed), padding var(--transition-speed);
+        }
+        .accordion-body-content {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--color-text-light);
+            border-top: 1px solid var(--color-border);
+        }
+        .accordion-item.active .accordion-body {
+            max-height: 300px; /* Adjust as needed */
+        }
+
+        /* --- CTA Section --- */
+        .page-cta {
+            background-color: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
+            z-index: 500;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity var(--transition-speed), transform var(--transition-speed);
+        }
+
+        #back-to-top.show {
+            display: flex;
+            opacity: 1;
+        }
+        #back-to-top:hover {
+            background-color: var(--color-accent-dark);
+            transform: scale(1.1);
+        }
+
+        /* Article Page Styles */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .article-card {
+            background: var(--color-surface);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        .article-card-img {
+            height: 200px;
+        }
+        .article-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .article-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        .article-card-content p {
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .article-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+        }
+        .article-detail-header {
+            margin-bottom: 2rem;
+        }
+        .back-to-blog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .article-detail-header h1 {
+            font-size: 2.5rem;
+        }
+        .article-detail-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 2rem;
+        }
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero-grid, .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero-benefits {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .why-us-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            .form-container {
+                margin-top: 3rem;
+            }
+            .damage-types-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 320px;
+                height: 100vh;
+                background-color: var(--color-surface);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right var(--transition-speed);
+                z-index: 1050;
+            }
+            .nav-menu.active {
+                right: 0;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .damage-types-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container container">
+            <a href="#" class="nav-logo" data-page="page-home">MobilLaka<span style="color: var(--color-accent);">.com</span></a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#" class="nav-link" data-page="page-proses">Proses Kami</a></li>
+                <li><a href="#" class="nav-link" data-page="page-artikel">Artikel</a></li>
+                <li><a href="#" class="nav-link" data-page="page-tentang">Tentang Kami</a></li>
+                <li><a href="#" class="nav-link" data-page="page-faq">FAQ</a></li>
+                <li><a href="#form-penawaran" class="btn btn-primary nav-link-btn">Jual Mobil Anda</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content: Pages will be swapped here -->
+    <main>
+
+        <!-- Page: Home -->
+        <div id="page-home" class="page active">
+            <!-- Hero & Form Section -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <h1>Mobil Rusak, Bekas Laka, atau Mati Total?</h1>
+                            <p>Jangan biarkan mobil rusak memenuhi garasi Anda. Kami siap membeli mobil Anda dalam kondisi apapun, dengan proses yang cepat, mudah, dan pembayaran tunai.</p>
+                            <ul class="hero-benefits">
+                                <li><i class="fas fa-check-circle"></i> Penawaran Cepat dalam 24 Jam</li>
+                                <li><i class="fas fa-check-circle"></i> Inspeksi & Derek Gratis</li>
+                                <li><i class="fas fa-check-circle"></i> Pembayaran Tunai di Tempat</li>
+                                <li><i class="fas fa-check-circle"></i> Tanpa Biaya Tersembunyi</li>
+                            </ul>
+                        </div>
+                        <div class="form-container" id="form-penawaran">
+                            <h3>Dapatkan Penawaran Gratis!</h3>
+                            <form id="sell-car-form">
+                                <div class="form-group">
+                                    <label for="car-brand-model">Merek & Model Mobil</label>
+                                    <input type="text" id="car-brand-model" placeholder="Cth: Toyota Avanza, Honda Brio" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="car-year">Tahun</label>
+                                    <input type="number" id="car-year" placeholder="Cth: 2015" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="car-condition">Jelaskan Kondisi/Kerusakan</label>
+                                    <textarea id="car-condition" placeholder="Cth: Bekas tabrakan depan, mesin mati, terendam banjir..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="seller-phone">Nomor WhatsApp Anda</label>
+                                    <input type="tel" id="seller-phone" placeholder="0812xxxxxxxx" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Kirim & Dapatkan Penawaran</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="section" style="background-color: var(--color-surface);">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Pilih Proses yang Sesuai Untuk Anda</h2>
+                        <p>Kami menawarkan fleksibilitas untuk kebutuhan Anda, baik jual langsung atau tukar tambah.</p>
+                    </div>
+                    <div class="how-it-works-container">
+                        <div class="process-tabs">
+                            <button class="process-tab-btn active" data-tab="tab-jual">Jual Mobil</button>
+                            <button class="process-tab-btn" data-tab="tab-tukar">Tukar Tambah</button>
+                        </div>
+                        <div id="tab-jual" class="process-tab-content active">
+                            <div class="steps-grid">
+                                <div class="step-card">
+                                    <span class="step-icon"><i class="fas fa-file-signature"></i></span>
+                                    <h4>1. Isi Formulir</h4>
+                                    <p>Berikan kami detail dasar mobil Anda melalui formulir online kami yang cepat dan mudah.</p>
+                                </div>
+                                <div class="step-card">
+                                    <span class="step-icon"><i class="fas fa-car-side"></i></span>
+                                    <h4>2. Inspeksi Gratis</h4>
+                                    <p>Tim kami akan datang ke lokasi Anda untuk melakukan inspeksi mobil secara gratis dan tanpa kewajiban.</p>
+                                </div>
+                                <div class="step-card">
+                                    <span class="step-icon"><i class="fas fa-hand-holding-usd"></i></span>
+                                    <h4>3. Terima Pembayaran</h4>
+                                    <p>Jika Anda setuju dengan penawaran kami, kami akan membayar tunai di tempat dan mengurus semua dokumen.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-tukar" class="process-tab-content">
+                            <div class="steps-grid">
+                                <div class="step-card">
+                                    <span class="step-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                                    <h4>1. Nilai Mobil Anda</h4>
+                                    <p>Isi formulir untuk mendapatkan penawaran harga tunai untuk mobil lama Anda yang rusak.</p>
+                                </div>
+                                <div class="step-card">
+                                    <span class="step-icon"><i class="fas fa-money-bill-wave"></i></span>
+                                    <h4>2. Dapatkan Dana Tunai</h4>
+                                    <p>Kami inspeksi dan bayar mobil Anda secara tunai, memberikan Anda dana segar untuk mobil baru.</p>
+                                </div>
+                                <div class="step-card">
+                                    <span class="step-icon"><i class="fas fa-car-new"></i></span>
+                                    <h4>3. Beli Mobil di Mana Saja</h4>
+                                    <p>Gunakan dana dari kami sebagai DP atau tambahan untuk membeli mobil baru/bekas di dealer pilihan Anda.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Us Section -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Mengapa Memilih Kami?</h2>
+                        <p>Kami menawarkan lebih dari sekadar harga. Kami menawarkan solusi yang cepat dan tanpa repot.</p>
+                    </div>
+                    <div class="why-us-grid">
+                        <div class="why-us-image">
+                            <img src="./images/Logo.jfif" width="400px" alt="Tim sedang melakukan inspeksi mobil">
+                        </div>
+                        <div class="why-us-content">
+                             <div class="why-us-item">
+                                <div class="why-us-icon"><i class="fas fa-tags"></i></div>
+                                <div>
+                                    <h4>Penawaran Harga Terbaik</h4>
+                                    <p>Kami memberikan penawaran yang adil dan transparan berdasarkan kondisi nyata mobil Anda, tanpa menekan harga.</p>
+                                </div>
+                            </div>
+                             <div class="why-us-item">
+                                <div class="why-us-icon"><i class="fas fa-shipping-fast"></i></div>
+                                <div>
+                                    <h4>Proses Cepat & Mudah</h4>
+                                    <p>Lupakan proses penjualan yang berbelit-belit. Dari formulir hingga pembayaran bisa selesai dalam 24 jam.</p>
+                                </div>
+                            </div>
+                             <div class="why-us-item">
+                                <div class="why-us-icon"><i class="fas fa-truck"></i></div>
+                                <div>
+                                    <h4>Derek Sepenuhnya Gratis</h4>
+                                    <p>Anda tidak perlu khawatir soal biaya angkut. Tim kami akan mengambil mobil Anda di lokasi tanpa biaya sepeserpun.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- What We Buy Section -->
+            <section id="what-we-buy" class="section" style="background-color: var(--color-surface);">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Kami Membeli Mobil dalam Segala Kondisi</h2>
+                        <p>Tidak peduli seberapa parah kerusakannya, kami tertarik untuk memberikan penawaran.</p>
+                    </div>
+                    <div class="damage-types-grid">
+                        <div class="damage-card">
+                            <img src="./images/mobil_6.jpg" alt="Mobil bekas kecelakaan">
+                            <h4>Bekas Kecelakaan</h4>
+                        </div>
+                        <div class="damage-card">
+                            <img src="./images/mobil_7.jpeg" alt="Mobil terendam banjir">
+                            <h4>Terendam Banjir</h4>
+                        </div>
+                        <div class="damage-card">
+                            <img src="./images/mobil_8.jfif" alt="Mesin mobil rusak">
+                            <h4>Mesin Rusak</h4>
+                        </div>
+                        <div class="damage-card">
+                            <img src="https://images.pexels.com/photos/7643734/pexels-photo-7643734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Dokumen kendaraan">
+                            <h4>Surat Bermasalah</h4>
+                        </div>
+                        <div class="damage-card">
+                            <img src="./images/mobil_9.jfif" alt="Mobil tua mangkrak">
+                            <h4>Mobil Tua & Mangkrak</h4>
+                        </div>
+                        <div class="damage-card">
+                            <img src="https://images.pexels.com/photos/544542/pexels-photo-544542.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Mobil dengan ban kempes">
+                            <h4>Kondisi Lainnya</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Aktivitas Kami di Lapangan</h2>
+                        <p>Kami bekerja cepat dan profesional. Berikut adalah beberapa dokumentasi dari proses pembelian dan pengambilan mobil dari pelanggan kami.</p>
+                    </div>
+                    <!-- Swiper -->
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="./images/mobil_12.jfif" alt="Mobil sedan bekas tabrakan diangkut oleh truk derek">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/mobil_10.jfif" alt="Mobil city car rusak dinaikkan ke atas truk towing">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/mobil_11.jfif" alt="Mobil tua diangkut dari garasi rumah">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/mobil_4.jpeg" alt="Truk derek siap mengangkut mobil dari pinggir jalan">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/mobil_5.jpeg" alt="Mobil di atas truk derek dengan latar belakang kota">
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="section" style="background-color: var(--color-surface);">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Apa Kata Mereka yang Telah Menjual kepada Kami?</h2>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://i.pravatar.cc/150?img=1" alt="Avatar Budi">
+                                <div class="testimonial-author">
+                                    <h4>Budi H.</h4>
+                                    <span>Jakarta Selatan</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Mobil saya rusak parah bekas tabrakan, bingung mau diapakan. Tim SolusiMobil.id datang, inspeksi, dan bayar di tempat. Prosesnya cepat sekali!"</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://i.pravatar.cc/150?img=2" alt="Avatar Sari">
+                                <div class="testimonial-author">
+                                    <h4>Sari W.</h4>
+                                    <span>Bekasi</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Avanza saya terendam banjir dan biaya perbaikannya mahal. Saya hubungi website ini, dapat penawaran yang adil. Sangat membantu."</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://i.pravatar.cc/150?img=3" alt="Avatar Agus">
+                                <div class="testimonial-author">
+                                    <h4>Agus P.</h4>
+                                    <span>Tangerang</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </div>
+                            <p>"Mobil tua di garasi sudah 5 tahun tidak jalan. Daripada jadi sarang nyamuk, saya jual ke sini. Prosesnya mudah, tidak ribet sama sekali."</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://i.pravatar.cc/150?img=4" alt="Avatar Dewi">
+                                <div class="testimonial-author">
+                                    <h4>Dewi K.</h4>
+                                    <span>Depok</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"BPKB mobil warisan masih di leasing, tapi mesinnya sudah rusak. Mereka bantu urus semuanya dan memberikan harga yang bagus. Sangat profesional."</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://i.pravatar.cc/150?img=5" alt="Avatar Eko">
+                                <div class="testimonial-author">
+                                    <h4>Eko S.</h4>
+                                    <span>Bogor</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Pajak mobil mati 3 tahun, bodi juga sudah banyak lecet. Dihargai dengan pantas tanpa banyak pertanyaan. Saya sangat merekomendasikan layanan ini."</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://i.pravatar.cc/150?img=6" alt="Avatar Rina">
+                                <div class="testimonial-author">
+                                    <h4>Rina M.</h4>
+                                    <span>Jakarta Timur</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Awalnya ragu, tapi timnya sangat ramah dan transparan saat inspeksi. Penjelasannya detail dan pembayarannya langsung ditransfer. Terima kasih!"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ on Home Page -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Pertanyaan Umum</h2>
+                        <p>Jawaban cepat untuk pertanyaan yang paling sering kami terima.</p>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Berapa lama proses dari pengajuan hingga pembayaran?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Kami berusaha secepat mungkin. Jika semua informasi lengkap, proses dari pengisian formulir hingga pembayaran bisa selesai dalam 1x24 jam, tergantung pada jadwal inspeksi yang disepakati.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Apakah ada biaya untuk inspeksi atau derek?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Tidak ada sama sekali. Layanan inspeksi dan pengambilan mobil (derek) sepenuhnya gratis dan menjadi tanggung jawab kami, bahkan jika Anda memutuskan untuk tidak menerima penawaran kami.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Area mana saja yang dijangkau oleh layanan Anda?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Saat ini, layanan kami mencakup seluruh wilayah JABODETABEK (Jakarta, Bogor, Depok, Tangerang, Bekasi). Kami sedang berupaya untuk memperluas jangkauan layanan kami di masa mendatang.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section page-cta">
+                <div class="container">
+                    <h2 >Jangan Tunda Lagi!</h2>
+                    <p >Ubah mobil rusak Anda menjadi uang tunai hari ini. Dapatkan penawaran gratis dan tanpa kewajiban sekarang juga.</p>
+                    <a href="#form-penawaran" class="btn btn-primary cta-btn">Dapatkan Penawaran Sekarang</a>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Page: Proses Kami -->
+        <div id="page-proses" class="page">
+             <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Detail Proses Kami</h2>
+                        <p>Kami percaya pada transparansi. Berikut adalah rincian dari setiap langkah yang akan Anda lalui.</p>
+                    </div>
+                    <div class="why-us-grid">
+                        <div class="why-us-item">
+                            <div class="why-us-icon"><i class="fas fa-1"></i></div>
+                            <div>
+                                <h4>Langkah 1: Kirim Informasi Mobil Anda</h4>
+                                <p>Gunakan formulir di halaman utama kami untuk mengirimkan detail mobil Anda. Semakin detail informasi kerusakan yang Anda berikan, semakin akurat penawaran awal yang bisa kami berikan. Anda juga bisa mengirimkan foto melalui WhatsApp untuk mempercepat proses.</p>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <div class="why-us-icon"><i class="fas fa-2"></i></div>
+                            <div>
+                                <h4>Langkah 2: Jadwalkan Inspeksi Gratis</h4>
+                                <p>Setelah menerima data Anda, tim kami akan menghubungi Anda untuk memberikan penawaran awal dan menjadwalkan inspeksi. Kami akan datang ke lokasi Anda, baik di rumah atau di bengkel, pada waktu yang Anda tentukan. Proses inspeksi biasanya memakan waktu 30-45 menit.</p>
+                            </div>
+                        </div>
+                         <div class="why-us-item">
+                            <div class="why-us-icon"><i class="fas fa-3"></i></div>
+                            <div>
+                                <h4>Langkah 3: Terima Penawaran Final & Pembayaran</h4>
+                                <p>Berdasarkan hasil inspeksi, kami akan memberikan penawaran harga final. Tidak ada kewajiban untuk menerima. Jika Anda setuju, kami akan langsung memproses pembayaran secara tunai atau transfer instan. Kami juga akan mengurus semua dokumen serah terima.</p>
+                            </div>
+                        </div>
+                         <div class="why-us-item">
+                            <div class="why-us-icon"><i class="fas fa-truck"></i></div>
+                            <div>
+                                <h4>Langkah 4: Pengambilan Mobil Gratis</h4>
+                                <p>Anda tidak perlu pusing memikirkan cara membawa mobil Anda. Tim kami akan mengatur pengambilan mobil menggunakan mobil derek dari lokasi Anda, sepenuhnya tanpa biaya tambahan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section page-cta">
+                <div class="container">
+                    <h2>Siap Menjual Mobil Anda?</h2>
+                    <p>Mulai prosesnya sekarang dan dapatkan penawaran terbaik dari kami.</p>
+                    <a href="#" data-page="page-home" class="btn btn-primary nav-link-btn">Dapatkan Penawaran Gratis</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page: Artikel -->
+        <div id="page-artikel" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Artikel & Wawasan</h2>
+                        <p>Dapatkan informasi berguna seputar penanganan mobil rusak dan proses penjualan.</p>
+                    </div>
+                    <div class="article-grid">
+                        <div class="article-card" data-article="1">
+                            <div class="article-card-img">
+                                <img src="https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Mobil kecelakaan">
+                            </div>
+                            <div class="article-card-content">
+                                <h3>5 Hal yang Harus Dilakukan Setelah Mobil Mengalami Kecelakaan</h3>
+                                <p>Kecelakaan bisa membuat panik. Ketahui langkah-langkah penting yang harus Anda ambil untuk melindungi diri dan aset Anda.</p>
+                                <button class="btn btn-primary btn-block">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                        <div class="article-card" data-article="2">
+                            <div class="article-card-img">
+                                <img src="./images/mobil_2.jpeg" alt="Orang sedang menilai mobil rusak">
+                            </div>
+                            <div class="article-card-content">
+                                <h3>Bagaimana Nilai Mobil Rusak Ditentukan? Faktor-Faktor Kunci</h3>
+                                <p>Penasaran mengapa penawaran mobil rusak bisa bervariasi? Pahami faktor-faktor utama yang kami pertimbangkan.</p>
+                                <button class="btn btn-primary btn-block">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                        <div class="article-card" data-article="3">
+                            <div class="article-card-img">
+                                <img src="https://images.pexels.com/photos/7643734/pexels-photo-7643734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Dokumen mobil seperti BPKB dan STNK">
+                            </div>
+                            <div class="article-card-content">
+                                <h3>Menyiapkan Dokumen: Apa Saja yang Diperlukan untuk Menjual Mobil?</h3>
+                                <p>Memastikan kelengkapan dokumen akan memperlancar proses penjualan. Simak daftar lengkapnya di sini.</p>
+                                <button class="btn btn-primary btn-block">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                        <div class="article-card" data-article="4">
+                            <div class="article-card-img">
+                                <img src="https://images.pexels.com/photos/10354901/pexels-photo-10354901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Mobil terendam banjir">
+                            </div>
+                            <div class="article-card-content">
+                                <h3>Mobil Terendam Banjir: Jual atau Perbaiki? Menimbang Untung Rugi</h3>
+                                <p>Biaya perbaikan mobil bekas banjir bisa sangat mahal. Kapan saat yang tepat untuk menjualnya saja?</p>
+                                <button class="btn btn-primary btn-block">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                        <div class="article-card" data-article="5">
+                            <div class="article-card-img">
+                                <img src="./images/mobil_13.jfif" alt="STNK dan plat nomor">
+                            </div>
+                            <div class="article-card-content">
+                                <h3>Menjual Mobil dengan Pajak Mati: Panduan Lengkap dan Solusinya</h3>
+                                <p>Pajak kendaraan Anda mati? Jangan khawatir, Anda tetap bisa menjualnya. Pelajari cara dan prosesnya di sini.</p>
+                                <button class="btn btn-primary btn-block">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                        <div class="article-card" data-article="6">
+                            <div class="article-card-img">
+                                <img src="https://images.pexels.com/photos/4488658/pexels-photo-4488658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Orang menyerahkan kunci mobil">
+                            </div>
+                            <div class="article-card-content">
+                                <h3>Proses Administrasi Rumit? Kami Bantu!</h3>
+                                <p>Khawatir dengan proses balik nama, pengurusan BPKB yang masih di leasing, atau dokumen lainnya? Tenang, tim kami akan membantu Anda di setiap langkahnya.</p>
+                                <button class="btn btn-primary btn-block">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page: Artikel Detail -->
+        <div id="page-artikel-detail" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="article-detail-container">
+                        <div class="article-detail-header">
+                            <a href="#" class="back-to-blog-btn"><i class="fas fa-arrow-left"></i> Kembali ke Artikel</a>
+                            <h1 id="article-title">Judul Artikel</h1>
+                        </div>
+                        <img id="article-image" src="" alt="Gambar artikel" class="article-detail-img">
+                        <div id="article-content" class="article-content">
+                            <!-- Konten artikel akan diisi oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section page-cta">
+                <div class="container">
+                    <h2>Mobil Anda Bermasalah?</h2>
+                    <p>Jangan habiskan waktu dan biaya untuk perbaikan yang tidak pasti. Dapatkan penawaran tunai dari kami sekarang!</p>
+                    <a href="#" data-page="page-home" class="btn btn-primary nav-link-btn">Jual Mobil Anda</a>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- Page: Tentang Kami -->
+        <div id="page-tentang" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Misi Kami: Memberikan Solusi, Bukan Sekadar Membeli</h2>
+                    </div>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--color-text-light); font-size: 1.1rem;">
+                        <p>MobilLaka.com didirikan karena kami melihat banyak pemilik mobil yang kesulitan saat kendaraannya mengalami kerusakan parah atau kecelakaan. Proses klaim asuransi yang rumit, biaya perbaikan yang selangit, dan sulitnya menjual mobil dalam kondisi tidak sempurna menjadi beban pikiran.</p>
+                        <br>
+                        <p>Misi kami sederhana: menjadi solusi cepat dan adil bagi para pemilik mobil tersebut. Kami percaya bahwa setiap kendaraan masih memiliki nilai, terlepas dari kondisinya. Dengan membeli mobil Anda secara langsung, kami memberikan jalan keluar yang mudah dan menguntungkan, memungkinkan Anda untuk move on tanpa harus pusing dengan urusan perbaikan atau penjualan yang tak kunjung laku.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section page-cta">
+                <div class="container">
+                    <h2>Punya Mobil Rusak?</h2>
+                    <p>Jangan ragu, hubungi kami untuk mendapatkan solusi terbaik hari ini.</p>
+                    <a href="#" data-page="page-home" class="btn btn-primary nav-link-btn">Jual Mobil Anda Sekarang</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page: FAQ -->
+        <div id="page-faq" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                        <p>Jawaban untuk pertanyaan umum dari para penjual mobil.</p>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Berapa lama proses dari pengajuan hingga pembayaran?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Kami berusaha secepat mungkin. Jika semua informasi lengkap, proses dari pengisian formulir hingga pembayaran bisa selesai dalam 1x24 jam, tergantung pada jadwal inspeksi yang disepakati.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Bagaimana jika pajak mobil saya mati atau surat tidak lengkap?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Tetap tawarkan kepada kami. Kami bisa membeli mobil dengan kondisi pajak mati atau surat-surat yang tidak lengkap (misal: BPKB ada di leasing). Tentu saja, kondisi tersebut akan mempengaruhi penawaran harga final.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Apakah ada biaya untuk inspeksi atau derek?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Tidak ada sama sekali. Layanan inspeksi dan pengambilan mobil (derek) sepenuhnya gratis dan menjadi tanggung jawab kami, bahkan jika Anda memutuskan untuk tidak menerima penawaran kami.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="accordion-item">
+                            <div class="accordion-header">
+                                <h4>Area mana saja yang dijangkau oleh layanan Anda?</h4>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-body-content">
+                                    <p>Saat ini, layanan kami mencakup seluruh wilayah JABODETABEK (Jakarta, Bogor, Depok, Tangerang, Bekasi). Kami sedang berupaya untuk memperluas jangkauan layanan kami di masa mendatang.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section page-cta">
+                <div class="container">
+                    <h2>Masih Punya Pertanyaan?</h2>
+                    <p>Atau Anda sudah siap untuk menjual? Klik tombol di bawah ini.</p>
+                    <a href="#" data-page="page-home" class="btn btn-primary nav-link-btn">Dapatkan Penawaran Gratis</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page: Kontak -->
+        <div id="page-kontak" class="page">
+             <section class="section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Hubungi Kami</h2>
+                        <p>Punya pertanyaan lebih lanjut? Tim kami siap membantu Anda.</p>
+                    </div>
+                     <div class="form-container">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="contact-name">Nama Lengkap</label>
+                                <input type="text" id="contact-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Alamat Email</label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Pesan Anda</label>
+                                <textarea id="contact-message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MobilLaka.com</h4>
+                    <p>Solusi cepat, mudah, dan adil untuk menjual mobil bekas kecelakaan, rusak, atau mangkrak Anda.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="page-proses">Proses Kami</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-artikel">Artikel</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-tentang">Tentang Kami</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-faq">FAQ</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <h4>Kontak Kami</h4>
+                     <p>
+                        Jl. Raya Otomotif No. 99<br>
+                        Jakarta Selatan, Indonesia<br>
+                        <strong>WA:</strong> 0812-9876-5432<br>
+                        <strong>Email:</strong> info@solusimobil.id
+                     </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="copyright-year"></span> MobilLaka.com. Semua Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Integrated JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Element Selectors ---
+            const pages = document.querySelectorAll('.page');
+            const allNavLinks = document.querySelectorAll('.nav-link, .nav-logo, .cta-btn, .nav-link-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const navToggle = document.getElementById('nav-toggle');
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            // --- Page Navigation ---
+            const showPage = (pageId) => {
+                if (!pageId) return;
+
+                if (pageId.startsWith('#')) {
+                    const targetElement = document.querySelector(pageId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                     if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    return;
+                }
+
+                pages.forEach(page => page.classList.toggle('active', page.id === pageId));
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === pageId);
+                });
+                window.scrollTo(0, 0);
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            };
+
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    let pageId = link.dataset.page;
+                    if (link.hash) {
+                         e.preventDefault();
+                         showPage('page-home');
+                         setTimeout(() => {
+                             document.querySelector(link.hash)?.scrollIntoView({ behavior: 'smooth' });
+                         }, 100);
+                    } else if (pageId) {
+                        e.preventDefault();
+                        showPage(pageId);
+                    }
+                });
+            });
+
+
+            // --- Mobile Navigation ---
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+
+            // --- Accordion ---
+            document.addEventListener('click', e => {
+                const accordionHeader = e.target.closest('.accordion-header');
+                if (accordionHeader) {
+                    const item = accordionHeader.parentElement;
+                    item.classList.toggle('active');
+                }
+            });
+
+            // --- Form Submission Simulation ---
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    alert('Terima kasih! Data Anda telah terkirim. Tim kami akan segera menghubungi Anda melalui WhatsApp untuk memberikan penawaran awal.');
+                    form.reset();
+                });
+            });
+
+            // --- Back to Top Button ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // --- Copyright Year ---
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+            // --- Initialize Swiper ---
+            const swiper = new Swiper('.mySwiper', {
+                loop: true,
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                      slidesPerView: 1,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 40,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      spaceBetween: 50,
+                    },
+                }
+            });
+
+            // --- Tab Functionality ---
+            const processTabs = document.querySelector('.process-tabs');
+            if(processTabs) {
+                processTabs.addEventListener('click', (e) => {
+                    if (e.target.matches('.process-tab-btn')) {
+                        const tabId = e.target.dataset.tab;
+
+                        document.querySelectorAll('.process-tab-btn').forEach(btn => btn.classList.remove('active'));
+                        e.target.classList.add('active');
+
+                        document.querySelectorAll('.process-tab-content').forEach(content => {
+                            content.classList.toggle('active', content.id === tabId);
+                        });
+                    }
+                });
+            }
+
+            // --- Article Navigation ---
+            const articleData = {
+                "1": {
+                    title: "5 Hal yang Harus Dilakukan Setelah Mobil Mengalami Kecelakaan",
+                    image: "https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    content: `
+                        <p>Mengalami kecelakaan mobil bisa menjadi pengalaman yang menegangkan dan membingungkan. Namun, tetap tenang dan mengambil langkah yang tepat dapat membuat perbedaan besar. Berikut adalah 5 hal penting yang harus Anda lakukan segera setelah kecelakaan.</p>
+                        <h3>1. Pastikan Keamanan Semua Pihak</h3>
+                        <p>Langkah pertama dan terpenting adalah memeriksa kondisi diri sendiri, penumpang, dan orang lain yang terlibat. Jika ada yang terluka, segera hubungi layanan darurat (ambulans). Pindahkan kendaraan ke bahu jalan jika memungkinkan untuk menghindari kemacetan dan kecelakaan susulan.</p>
+                        <h3>2. Hubungi Pihak Berwenang</h3>
+                        <p>Meskipun kecelakaan terlihat ringan, penting untuk menghubungi polisi. Laporan polisi resmi akan sangat berguna untuk klaim asuransi dan sebagai catatan hukum mengenai insiden tersebut.</p>
+                        <h3>3. Dokumentasikan Kejadian</h3>
+                        <p>Ambil foto kerusakan pada semua kendaraan yang terlibat dari berbagai sudut. Foto juga kondisi jalan, rambu lalu lintas, dan bukti lain yang relevan. Catat nama, nomor telepon, dan informasi asuransi dari pengemudi lain yang terlibat.</p>
+                        <h3>4. Jangan Mengaku Salah</h3>
+                        <p>Saat berbicara dengan pengemudi lain, tetaplah tenang dan sopan, tetapi hindari mendiskusikan siapa yang salah atau meminta maaf secara berlebihan. Biarkan pihak asuransi dan polisi yang menentukan tanggung jawab berdasarkan bukti yang ada.</p>
+                        <h3>5. Hubungi Perusahaan Asuransi Anda (dan Kami!)</h3>
+                        <p>Segera laporkan kejadian ke perusahaan asuransi Anda. Setelah itu, jika biaya perbaikan dirasa terlalu mahal atau prosesnya rumit, hubungi kami. Kami dapat memberikan penawaran tunai untuk mobil Anda dalam kondisi apa adanya, memberikan Anda solusi cepat tanpa pusing.</p>
+                    `
+                },
+                "2": {
+                    title: "Bagaimana Nilai Mobil Rusak Ditentukan? Faktor-Faktor Kunci",
+                    image: "https://images.pexels.com/photos/8982398/pexels-photo-8982398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    content: `
+                        <p>Banyak orang bertanya-tanya bagaimana kami menentukan harga mobil yang sudah rusak atau bekas kecelakaan. Prosesnya melibatkan beberapa faktor kunci untuk memberikan penawaran yang adil dan kompetitif. Berikut adalah faktor-faktor utama yang kami pertimbangkan.</p>
+                        <h3>1. Merek, Model, dan Tahun Kendaraan</h3>
+                        <p>Ini adalah dasar penilaian. Mobil dari merek populer dengan permintaan suku cadang yang tinggi cenderung memiliki nilai lebih tinggi, bahkan dalam kondisi rusak. Tahun pembuatan juga sangat mempengaruhi nilai dasar kendaraan.</p>
+                        <h3>2. Tingkat Kerusakan</h3>
+                        <p>Kami menganalisis sejauh mana kerusakan yang terjadi. Apakah kerusakannya hanya kosmetik (bodi penyok, cat tergores) atau sudah mengenai bagian struktural (sasis, pilar)? Kerusakan pada komponen vital seperti mesin dan transmisi juga akan sangat mempengaruhi nilai.</p>
+                        <h3>3. Kelengkapan dan Kondisi Suku Cadang</h3>
+                        <p>Nilai sebuah mobil rusak tidak hanya terletak pada kemungkinan perbaikannya, tetapi juga pada nilai suku cadangnya. Komponen yang masih utuh dan dapat digunakan kembali (seperti interior, velg, sistem audio, dll.) akan menambah nilai jual mobil Anda.</p>
+                        <h3>4. Kelengkapan Dokumen</h3>
+                        <p>Mobil dengan surat-surat lengkap (STNK dan BPKB) memiliki nilai yang jauh lebih tinggi. Kondisi pajak kendaraan (hidup atau mati) juga menjadi salah satu faktor pertimbangan dalam penawaran akhir kami.</p>
+                    `
+                },
+                "3": {
+                    title: "Menyiapkan Dokumen: Apa Saja yang Diperlukan untuk Menjual Mobil?",
+                    image: "https://images.pexels.com/photos/7643734/pexels-photo-7643734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    content: `
+                        <p>Proses penjualan mobil akan berjalan jauh lebih lancar jika Anda sudah menyiapkan semua dokumen yang diperlukan. Memiliki dokumen yang lengkap juga dapat meningkatkan kepercayaan dan nilai jual mobil Anda. Berikut adalah daftar dokumen penting yang harus Anda siapkan.</p>
+                        <h3>Dokumen Wajib:</h3>
+                        <ul>
+                            <li><strong>BPKB (Buku Pemilik Kendaraan Bermotor):</strong> Ini adalah dokumen kepemilikan yang paling penting. Pastikan nama yang tertera sesuai dengan KTP Anda.</li>
+                            <li><strong>STNK (Surat Tanda Nomor Kendaraan):</strong> Pastikan STNK masih berlaku. Jika pajak kendaraan sudah mati, tetap lampirkan STNK yang ada.</li>
+                            <li><strong>Faktur Pembelian:</strong> Dokumen ini membuktikan bahwa mobil tersebut dibeli secara sah dari dealer resmi. Ini adalah bukti pertama kepemilikan kendaraan.</li>
+                            <li><strong>KTP (Kartu Tanda Penduduk):</strong> KTP pemilik yang namanya tertera di BPKB dan STNK akan diperlukan untuk proses administrasi.</li>
+                        </ul>
+                        <h3>Dokumen Pendukung (Jika Ada):</h3>
+                        <ul>
+                            <li><strong>Buku Servis:</strong> Riwayat servis yang tercatat dapat memberikan gambaran kondisi mesin sebelum rusak.</li>
+                            <li><strong>Kunci Serep:</strong> Memiliki kunci serep akan menambah nilai.</li>
+                        </ul>
+                        <p>Dengan menyiapkan dokumen-dokumen ini, Anda menunjukkan bahwa Anda adalah penjual yang serius dan transparan, yang akan mempercepat proses dari penawaran hingga pembayaran.</p>
+                    `
+                },
+                "4": {
+                    title: "Mobil Terendam Banjir: Jual atau Perbaiki?",
+                    image: "https://images.pexels.com/photos/10354901/pexels-photo-10354901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    content: "<p>Memperbaiki mobil yang terendam banjir bisa menjadi pertaruhan besar. Biaya seringkali membengkak karena kerusakan tersembunyi pada sistem kelistrikan dan komponen interior. Menjualnya dalam kondisi apa adanya seringkali menjadi pilihan yang lebih bijak secara finansial dan menghemat waktu Anda.</p>"
+                },
+                "5": {
+                    title: "Menjual Mobil dengan Pajak Mati: Panduan Lengkap",
+                    image: "https://images.pexels.com/photos/7131335/pexels-photo-7131335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    content: "<p>Punya mobil dengan pajak yang sudah mati bertahun-tahun? Jangan khawatir. Anda tetap bisa menjualnya kepada kami. Kami akan menghitung tunggakan pajak dan memasukkannya ke dalam penawaran kami secara transparan, sehingga Anda tidak perlu repot mengurusnya sendiri.</p>"
+                },
+                "6": {
+                    title: "Proses Administrasi Rumit? Kami Bantu!",
+                    image: "https://images.pexels.com/photos/4488658/pexels-photo-4488658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    content: "<p>Khawatir dengan proses balik nama, pengurusan BPKB yang masih di leasing, atau dokumen lainnya? Tim kami berpengalaman dalam menangani berbagai situasi administrasi. Kami akan memandu dan membantu Anda di setiap langkah untuk memastikan proses penjualan berjalan mulus dan aman.</p>"
+                }
+            };
+
+            document.body.addEventListener('click', e => {
+                const articleCard = e.target.closest('.article-card');
+                const backBtn = e.target.closest('.back-to-blog-btn');
+
+                if (articleCard) {
+                    const articleId = articleCard.dataset.article;
+                    const data = articleData[articleId];
+                    if (data) {
+                        document.getElementById('article-title').textContent = data.title;
+                        document.getElementById('article-image').src = data.image;
+                        document.getElementById('article-content').innerHTML = data.content;
+                        showPage('page-artikel-detail');
+                    }
+                }
+
+                if (backBtn) {
+                    e.preventDefault();
+                    showPage('page-artikel');
+                }
+            });
+
+            // --- Initial Load ---
+            showPage('page-home');
+        });
+    </script>
+</body>
+</html>
